@@ -6,6 +6,7 @@ import pyautogui
 from icecream import ic
 import time
 import random
+from tqdm import tqdm
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Reads the json file and clicks on the coordinates to perform bones to bananas')
@@ -42,7 +43,7 @@ assert coords
 
 ic('Opening bank')
 click(coords['bank'],sleep=1)
-for i in range(args['iterations']):
+for i in tqdm(range(args['iterations'])):
     ic(i)
     ic('Withdrawing bones')
     click(coords['banked_bones'], 1)

@@ -19,34 +19,48 @@ ic('This script expects you to be loaded with 14 copper and 14 tin')
 ic('Click to get to the smelter')
 # Don't store this one (not sure if we'll get back here)
 smelter = get_one_left_click()
+t = time.perf_counter()
 
 ic('Click on furnace')
 walk_to_furnace = get_one_left_click()
-ic(walk_to_furnace)
+duration = time.perf_counter() - t
+ic(walk_to_furnace, duration)
+t = time.perf_counter()
 
 ic('Click to smelt all')
 smelt = get_one_left_click()
-ic(smelt)
+duration = time.perf_counter() - t
+ic(smelt, duration)
+t = time.perf_counter()
 
 ic('Click back to the same bank spot')
 back_to_bank = get_one_left_click()
+duration = time.perf_counter() - t
 ic(back_to_bank)
+t = time.perf_counter()
 
 ic('Click to open bank')
 open_bank = get_one_left_click()
-ic(open_bank)
+duration = time.perf_counter() - t
+ic(open_bank, duration)
+t = time.perf_counter()
 
 ic('Click to withdraw copper')
 w_copper = get_one_left_click()
-ic(w_copper)
+duration = time.perf_counter() - t
+ic(w_copper, duration)
+t = time.perf_counter()
 
 ic('Click to deposit bars')
 d_bars = get_one_left_click()
-ic(d_bars)
+duration = time.perf_counter() - t
+ic(d_bars, duration)
+t = time.perf_counter()
 
 ic('Click to withdraw tin')
 w_tin = get_one_left_click()
-ic(w_tin)
+duration = time.perf_counter() - t
+ic(w_tin, duration)
 
 # ic('Click to get back to the smelter')
 # smelter = get_one_left_click()
