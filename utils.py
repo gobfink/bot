@@ -3,6 +3,7 @@ import pyautogui
 from pynput import mouse
 import time
 import random
+from icecream import ic
 
 def write_json(j_data, file):
     with open(file,'w') as f:
@@ -28,6 +29,7 @@ def click(coordinates, sleep=0, pixels_to_fuzz=0):
     pyautogui.click()
     sleep_f = fuzz(sleep)
     time.sleep(sleep_f)
+    ic('click',x,y,sleep_f)
     
 def open_inv(sleep):
     press('esc',sleep)
@@ -35,9 +37,14 @@ def open_inv(sleep):
 def open_magic(sleep):
     press('f6', sleep)
 
+def confirm(sleep):
+    press('space', sleep)
+
 def press(key, sleep):
     pyautogui.press(key)
-    time.sleep(sleep)
+    sleep_f = fuzz(sleep)
+    ic('press', key, sleep_f)
+    time.sleep(sleep_f)
 
 def fuzz(value, amount=0.05):
     return value * (1 + random.uniform(-amount,amount))
