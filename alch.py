@@ -16,7 +16,7 @@ def parse_args():
 args = parse_args()
 
 ic('Opening magic')
-open_magic()
+open_magic(1)
 
 ic('Click alchemy')
 alch = get_one_left_click()

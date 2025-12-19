@@ -6,7 +6,7 @@ import time
 import argparse
 from icecream import ic
 
-CHICKEN_RGB = (0, 255, 241)  # R, G, B
+CHICKEN_RGB = (255, 0, 255)  # R, G, B
 LEVEL_1_RGB = (0, 255, 0)
 ITEM_RGB = (170,0,255)
 TOLERANCE = 1  # set to e.g. 5–10 if you want "close enough" colors
@@ -67,6 +67,7 @@ def attack_chicken():
         print('Unable to find chicken')
         return False
     m = random.choice(chicken_tiles)
+    ic(m)
     x, y = m
     pyautogui.moveTo(x=x, y=y)
     pyautogui.click()
@@ -94,8 +95,8 @@ def delay(d_min, d_max):
 args = parse_args()
 while True:
     found = True
-    while found:
-        found = collect()
-        delay(args['min_delay'], args['max_delay'])
+    #while found:
+    #    found = collect()
+    #    delay(args['min_delay'], args['max_delay'])
     attack_chicken()
     delay(args['min_delay'], args['max_delay'])

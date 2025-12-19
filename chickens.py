@@ -3,8 +3,9 @@ import pyautogui
 import numpy as np
 import random
 import time
+from icecream import ic
 
-CHICKEN_RGB = (0, 255, 241)  # R, G, B
+CHICKEN_RGB = (0, 255, 255)  # R, G, B
 LEVEL_1_RGB = (0, 255, 0)
 FEATHER_RGB = (170,0,255)
 TOLERANCE = 1  # set to e.g. 5–10 if you want "close enough" colors
@@ -57,11 +58,13 @@ def attack_chicken():
         print('Unable to find chicken')
         return False
     m = random.choice(chicken_tiles)
+    ic(m)
     x, y = m
     pyautogui.moveTo(x=x, y=y)
     pyautogui.click()
     # Wait for combat to finish
-    delay = random.uniform(3,8)
+    delay = random.uniform(10*60,13*60)
+    ic(delay)
     time.sleep(delay)
     return True
 
@@ -79,8 +82,8 @@ def collect_feathers():
     time.sleep(delay)
     return True
 
-
-while True:
+iterations = 6
+for i in range(iterations):
     attack_chicken()
-    collect_feathers()
-    collect_feathers()
+    #collect_feathers()
+    #collect_feathers()

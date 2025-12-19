@@ -25,12 +25,10 @@ with open(args['input']) as f:
 
 assert coords
 
-ic('Opening magic')
-open_magic()
 for i in tqdm(range(args['iterations'])):
     ic(i)
     ic('Selecting alch')
     click(coords['alch'], .5)
     ic('Alching item')
-    click(coords['walk_to_furnace'], 3.5)
+    click(coords['item'], 3.5)
 
