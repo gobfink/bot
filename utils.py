@@ -34,6 +34,9 @@ def click(coordinates, sleep=0, pixels_to_fuzz=0):
 def open_inv(sleep):
     press('esc',sleep)
 
+def esc(sleep):
+    press('esc', sleep)
+
 def open_magic(sleep):
     press('f6', sleep)
 

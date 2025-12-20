@@ -5,7 +5,7 @@ import pyautogui
 import argparse
 import time
 
-from utils import write_json, get_one_left_click, click, confirm
+from utils import write_json, get_one_left_click, esc
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Writes the json file to load into the doer')
@@ -26,28 +26,31 @@ walk_to_furnace = get_one_left_click()
 
 ic('Click to smelt')
 smelt = get_one_left_click()
-time.sleep(1)
 
-ic('Confirming smelt')
-confirm(85)
+ic('Click to confirm smelt')
+_ = get_one_left_click()
 
-ic('Clicking to mold')
-click(smelt, 1)
+ic('Click to mold')
+_ = get_one_left_click()
 
-ic('Confirming')
-confirm(1)
+ic('Click to confirm')
+_ = get_one_left_click()
 
 ic('Click back to the same bank spot')
 back_to_bank = get_one_left_click()
 ic(back_to_bank)
 
-time.sleep(6)
 
-ic('Opening bank')
-click(open_bank, 1)
+ic('Click to open bank')
+_ = get_one_left_click()
 
 ic('Click to deposit jewlery')
 d_jewlery = get_one_left_click()
+
+time.sleep(0.7)
+ic('Closing bank')
+esc()
+
 
 coordinates = {
     'open_bank': open_bank,
