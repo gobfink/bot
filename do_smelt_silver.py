@@ -7,7 +7,7 @@ from icecream import ic
 import time
 import random
 from tqdm import tqdm
-from utils import click
+from utils import click, confirm
 
 
 
@@ -37,7 +37,7 @@ for i in tqdm(range(args['iterations'])):
     ic('Clicking on furnace to smelt')
     click(coords['smelt'], 1.5)
     ic('Smelting all')
-    click(coords['smelt_all'], 88)
+    confirm(88)
     ic('back to bank')
     click(coords['back_to_bank'], 6)
     ic('Open bank')
