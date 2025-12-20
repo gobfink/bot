@@ -15,13 +15,15 @@ args = parse_args()
 
 ic('Opening magic')
 open_magic(1)
-ic('Click teleport')
-tele = get_one_left_click()
+
 ic('Click alchemy')
 alch = get_one_left_click()
 
 ic('Click on the item')
 item = get_one_left_click()
+
+ic('Click teleport')
+tele = get_one_left_click()
 
 coordinates = {
     'alch': alch,

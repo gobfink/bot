@@ -12,8 +12,8 @@ from utils import click, open_magic
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description='Reads the json file and clicks on the coordinates to perform bones to bananas')
-    parser.add_argument('--input', type=str, default='./alch.json', help='File with pixel coordinates')
+    parser = argparse.ArgumentParser(description='Reads the json file and clicks on the coordinates')
+    parser.add_argument('--input', type=str, default='./telealch.json', help='File with pixel coordinates')
     parser.add_argument('--iterations', type=int, default=1, help='Number of iterations to complete')
     return vars(parser.parse_args())
 
@@ -27,10 +27,10 @@ assert coords
 
 for i in tqdm(range(args['iterations'])):
     ic(i)
-    ic('Selecting tele')
-    click(coords['tele'], .6)
     ic('Selecting alch')
     click(coords['alch'], .6)
     ic('Alching item')
-    click(coords['item'], 3.5)
+    click(coords['item'], .6)
+    ic('Selecting tele')
+    click(coords['tele'], 1.6)
 
