@@ -7,7 +7,7 @@ from icecream import ic
 import time
 import random
 from tqdm import tqdm
-from utils import click, confirm
+from utils import click, confirm, random_true
 
 
 
@@ -15,6 +15,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Reads the json file and clicks on the coordinates to perform bones to bananas')
     parser.add_argument('--input', type=str, default='./silver.json', help='File with pixel coordinates')
     parser.add_argument('--iterations', type=int, default=1, help='Number of iterations to complete')
+    parser.add_argument('--probablity', type=float, default=0.5, help='Probablity of using alternate smelt')
     return vars(parser.parse_args())
 
 args = parse_args()
@@ -31,6 +32,19 @@ for i in tqdm(range(args['iterations'])):
     ic(i)
     ic('Withdrawing silver')
     click(coords['silver'], 1)
+    
+    if random_true(args['probablity']):
+        ic('Walking to alternate spot')
+        click(coords['alternate_furnace'], 6)
+        ic('Smelting from alternate spot')
+        click(coords['alternate_smelt'], 1.5, 5)
+    else:
+        ic('Walking to smelter')
+        click(coords['smelter'], 6)
+
+        ic('Walking to furnance to smelt')
+        click(coords['walk_to_furnace'], 1.5, 5)
+    
     ic('Walking to furnace')
     click(coords['walk_to_furnace'], 6)
 

@@ -40,6 +40,15 @@ _ = get_one_left_click()
 ic('Click to deposit bars')
 d_bars = get_one_left_click()
 
+ic('Click to the alternate furnace spot')
+alternate_furnace = get_one_left_click()
+ic(alternate_furnace)
+
+ic('Click to recover and smelt')
+alternate_smelt = get_one_left_click()
+ic(alternate_smelt)
+
+
 coordinates = {
     'open_bank': open_bank,
     'silver': silver,
@@ -47,6 +56,8 @@ coordinates = {
     'smelt': smelt,
     'back_to_bank': back_to_bank,
     'deposit_bars': d_bars,
+    'alternate_furnace': alternate_furnace,
+    'alternate_smelt': alternate_smelt,
 }
 
 ic(coordinates)
