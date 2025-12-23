@@ -39,11 +39,10 @@ for i in tqdm(range(args['iterations'])):
         ic('Smelting from alternate spot')
         click(coords['alternate_smelt'], 1.5, 5)
     else:
-        ic('Walking to smelter')
-        click(coords['smelter'], 6)
-
+        ic('Walking to furnace')
+        click(coords['walk_to_furnace'], 6)
         ic('Walking to furnance to smelt')
-        click(coords['walk_to_furnace'], 1.5, 5)
+        click(coords['smelt'], 1.5, 5)
     
     ic('Smelting all')
     confirm(88)
