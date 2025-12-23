@@ -40,6 +40,9 @@ _ = get_one_left_click()
 ic('Click to deposit bars')
 d_bars = get_one_left_click()
 
+ic('Click to withdraw silver')
+_ = get_one_left_click()
+
 ic('Click to the alternate furnace spot')
 alternate_furnace = get_one_left_click()
 ic(alternate_furnace)

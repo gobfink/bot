@@ -45,11 +45,6 @@ for i in tqdm(range(args['iterations'])):
         ic('Walking to furnance to smelt')
         click(coords['walk_to_furnace'], 1.5, 5)
     
-    ic('Walking to furnace')
-    click(coords['walk_to_furnace'], 6)
-
-    ic('Clicking on furnace to smelt')
-    click(coords['smelt'], 1.5, 5)
     ic('Smelting all')
     confirm(88)
     ic('back to bank')
