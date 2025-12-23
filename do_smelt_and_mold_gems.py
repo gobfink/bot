@@ -31,7 +31,7 @@ for i in tqdm(range(args['iterations'])):
     ic(i)
     if random_true(args['probablity']):
         ic('Walking to alternate spot')
-        click(coords['alternate'], 8)
+        click(coords['alternate_furnace'], 8)
         click(coords['alternate_smelt'], 1.2)
     else: 
         ic('Walking to furnace')
