@@ -6,7 +6,7 @@ import pyautogui
 from icecream import ic
 import time
 import random
-import tqdm
+from tqdm import tqdm
 from utils import click, random_true
 
 
