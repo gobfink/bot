@@ -49,13 +49,13 @@ for i in tqdm(range(args['iterations'])):
     click(coords['walk_to_furnace'], 6)
 
     ic('Clicking on furnace to smelt')
-    click(coords['smelt'], 1.5)
+    click(coords['smelt'], 1.5, 5)
     ic('Smelting all')
     confirm(88)
     ic('back to bank')
     click(coords['back_to_bank'], 6)
     ic('Open bank')
-    click(coords['open_bank'], 1)
+    click(coords['open_bank'], 1, 5)
     ic('deposit bars')
-    click(coords['deposit_bars'], 1)
+    click(coords['deposit_bars'], 1, 5)
 
