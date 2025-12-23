@@ -15,7 +15,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Reads the json file and clicks on the coordinates to perform bones to bananas')
     parser.add_argument('--input', type=str, default='./gem.json', help='File with pixel coordinates')
     parser.add_argument('--iterations', type=int, default=1, help='Number of iterations to complete')
-    parser.add_argument('--probablity', type=float, defualt=0.1, help='Probablity for alternatives')
+    parser.add_argument('--probablity', type=float, default=0.1, help='Probablity for alternatives')
     return vars(parser.parse_args())
 
 args = parse_args()
