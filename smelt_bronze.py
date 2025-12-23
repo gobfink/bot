@@ -62,9 +62,13 @@ w_tin = get_one_left_click()
 duration = time.perf_counter() - t
 ic(w_tin, duration)
 
-# ic('Click to get back to the smelter')
-# smelter = get_one_left_click()
-# ic(smelter)
+ic('Click to the wrong smelter spot')
+wrong_smelt = get_one_left_click()
+ic(wrong_smelt)
+
+ic('Click to recover and smelt')
+recover_smelt = get_one_left_click()
+ic(recover_smelt)
 
 coordinates = {
     'walk_to_furnace': walk_to_furnace,
@@ -75,6 +79,9 @@ coordinates = {
     'deposit_bars': d_bars,
     'withdraw_tin': w_tin,
     'smelter': smelter,
+    'wrong_smelt': wrong_smelt,
+    'recover_smelt': recover_smelt,
+
 }
 
 ic(coordinates)

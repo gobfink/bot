@@ -35,6 +35,10 @@ ic('Click to deposit jewlery')
 d_jewlery = get_one_left_click()
 ic('Click to withdraw gems')
 gems = get_one_left_click()
+ic('Click to the wrong furnace spot')
+alternate_furnace = get_one_left_click()
+ic('Click to smelt from wrong spot')
+alternate_smelt = get_one_left_click()
 
 coordinates = {
     'walk_to_furnace': walk_to_furnace,
@@ -44,6 +48,8 @@ coordinates = {
     'gold': gold,
     'deposit_jewlery': d_jewlery,
     'gems': gems,
+    'alernate_furnace': alternate_furnace,
+    'alternate_smelt': alternate_smelt,
 }
 
 ic(coordinates)
