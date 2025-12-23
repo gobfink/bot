@@ -28,7 +28,9 @@ assert coords
 for i in tqdm(range(args['iterations'])):
     ic(i)
     ic('Selecting alch')
-    click(coords['alch'], .5)
+    click(coords['alch'], .65)
     ic('Alching item')
     click(coords['item'], 3.5)
+    # How low can we go? a tick is 0.6 
+    # click(coords['item'], 1)
 

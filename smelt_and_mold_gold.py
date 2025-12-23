@@ -49,7 +49,7 @@ d_jewlery = get_one_left_click()
 
 time.sleep(0.7)
 ic('Closing bank')
-esc()
+esc(0)
 
 
 coordinates = {
