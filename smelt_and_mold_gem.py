@@ -48,7 +48,7 @@ coordinates = {
     'gold': gold,
     'deposit_jewlery': d_jewlery,
     'gems': gems,
-    'alernate_furnace': alternate_furnace,
+    'alternate_furnace': alternate_furnace,
     'alternate_smelt': alternate_smelt,
 }
 
