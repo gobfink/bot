@@ -15,7 +15,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Reads the json file and clicks on the coordinates to perform bones to bananas')
     parser.add_argument('--input', type=str, default='./gem.json', help='File with pixel coordinates')
     parser.add_argument('--iterations', type=int, default=1, help='Number of iterations to complete')
-    parser.add_argument('--probablity', type=float, default=0.1, help='Probablity for alternatives')
+    parser.add_argument('--probability', type=float, default=0.1, help='probability for alternatives')
     return vars(parser.parse_args())
 
 args = parse_args()
@@ -29,7 +29,7 @@ assert coords
 ic('Expects to have 13 gems and 13 gold ores and 1 mold and 1 other in inv')
 for i in tqdm(range(args['iterations'])):
     ic(i)
-    if random_true(args['probablity']):
+    if random_true(args['probability']):
         ic('Walking to alternate spot')
         click(coords['alternate_furnace'], 8)
         click(coords['alternate_smelt'], 1.2, 5)

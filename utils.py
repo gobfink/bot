@@ -56,5 +56,5 @@ def pixel_fuzz(value, number_of_pixels):
     offset = random.randint(-number_of_pixels, number_of_pixels)
     return value + offset
 
-def random_true(probablity):
-    return random.random() < probablity
+def random_true(probability):
+    return random.random() < probability
