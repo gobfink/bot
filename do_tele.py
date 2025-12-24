@@ -28,5 +28,5 @@ assert coords
 for i in tqdm(range(args['iterations'])):
     ic(i)
     ic('Selecting tele')
-    click(coords['tele'], 1.6, 4)
+    click(coords['tele'], 3, 4)
 
