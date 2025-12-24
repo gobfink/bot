@@ -41,7 +41,7 @@ for i in tqdm(range(args['iterations'])):
         ic('Walking to furnace')
         click(coords['walk_to_furnace'], 8)
         ic('Clicking on furnace to smelt')
-        click(coords['smelt'], 1.2, 7)
+        click(coords['smelt'], 2.3, 7)
 
 
     ic('Clicking on furnace to smelt')
