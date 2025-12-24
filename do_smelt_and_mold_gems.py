@@ -32,12 +32,12 @@ for i in tqdm(range(args['iterations'])):
     if random_true(args['probablity']):
         ic('Walking to alternate spot')
         click(coords['alternate_furnace'], 8)
-        click(coords['alternate_smelt'], 1.2)
+        click(coords['alternate_smelt'], 1.2, 5)
     else: 
         ic('Walking to furnace')
         click(coords['walk_to_furnace'], 8)
         ic('Clicking on furnace to smelt')
-        click(coords['smelt'], 1.2)
+        click(coords['smelt'], 1.2, 7)
 
     ic('Smelting all')
     confirm(42)

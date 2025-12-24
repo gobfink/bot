@@ -7,7 +7,7 @@ from icecream import ic
 import time
 import random
 from tqdm import tqdm
-from utils import click, confirm
+from utils import click, confirm, random_true
 
 
 
@@ -31,8 +31,17 @@ for i in tqdm(range(args['iterations'])):
     ic(i)
     ic('Withdrawing gold')
     click(coords['gold'], 1, pixels_to_fuzz=5)
-    ic('Walking to furnace')
-    click(coords['walk_to_furnace'], 6)
+
+    if random_true(args['probablity']):
+        ic('Walking to alternate spot')
+        click(coords['alternate_furnace'], 8)
+        click(coords['alternate_smelt'], 1.2, 5)
+    else: 
+        ic('Walking to furnace')
+        click(coords['walk_to_furnace'], 8)
+        ic('Clicking on furnace to smelt')
+        click(coords['smelt'], 1.2, 7)
+
 
     ic('Clicking on furnace to smelt')
     click(coords['smelt'], 1.5, pixels_to_fuzz=7)

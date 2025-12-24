@@ -47,10 +47,14 @@ _ = get_one_left_click()
 ic('Click to deposit jewlery')
 d_jewlery = get_one_left_click()
 
-time.sleep(0.7)
-ic('Closing bank')
-esc(0)
+ic('Click to withdraw gold')
+_ = get_one_left_click()
 
+ic('Click to the wrong furnace spot')
+alternate_furnace = get_one_left_click()
+
+ic('Click to smelt from wrong spot')
+alternate_smelt = get_one_left_click()
 
 coordinates = {
     'open_bank': open_bank,
@@ -59,6 +63,8 @@ coordinates = {
     'smelt': smelt,
     'back_to_bank': back_to_bank,
     'deposit_jelwery': d_jewlery,
+    'alternate_furnace': alternate_furnace,
+    'alternate_smelt': alternate_smelt,
 }
 
 ic(coordinates)
