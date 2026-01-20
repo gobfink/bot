@@ -20,6 +20,10 @@ def parse_args():
 
 args = parse_args()
 
+times = {
+    'walk': 21,
+}
+
 coords = None
 with open(args['input']) as f:
     coords = json.load(f)
@@ -35,19 +39,19 @@ for i in tqdm(range(args['iterations'])):
     
     if random_true(args['probability']):
         ic('Walking to alternate spot')
-        click(coords['alternate_furnace'], 6)
+        click(coords['alternate_furnace'], times['walk'])
         ic('Smelting from alternate spot')
         click(coords['alternate_smelt'], 1.5, 5)
     else:
         ic('Walking to furnace')
-        click(coords['walk_to_furnace'], 6)
+        click(coords['walk_to_furnace'], times['walk'])
         ic('Walking to furnance to smelt')
         click(coords['smelt'], 1.5, 5)
     
     ic('Smelting all')
-    confirm(88)
+    confirm(91)
     ic('back to bank')
-    click(coords['back_to_bank'], 6)
+    click(coords['back_to_bank'], 21)
     ic('Open bank')
     click(coords['open_bank'], 1, 5)
     ic('deposit bars')
