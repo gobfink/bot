@@ -5,6 +5,8 @@ import time
 import random
 from icecream import ic
 
+TICK_TIME=0.6
+
 def write_json(j_data, file):
     with open(file,'w') as f:
         json.dump(j_data,f,indent=4)
@@ -30,6 +32,14 @@ def click(coordinates, sleep=0, pixels_to_fuzz=0):
     sleep_f = fuzz(sleep)
     time.sleep(sleep_f)
     ic('click',x,y,sleep_f)
+
+def right_click(coordinates, sleep=TICK_TIME, pixels_to_fuzz=0):
+    x = pixel_fuzz(coordinates[0], pixels_to_fuzz)
+    y = pixel_fuzz(coordinates[1], pixels_to_fuzz)
+    pyautogui.rightClick(x=x, y=y)
+    sleep_f = fuzz(sleep)
+    time.sleep(sleep_f)
+    ic('right click', x,y,sleep_f)
     
 def open_inv(sleep):
     press('esc',sleep)
