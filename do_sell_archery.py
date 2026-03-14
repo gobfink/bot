@@ -7,7 +7,7 @@ from icecream import ic
 import time
 import random
 from tqdm import tqdm
-from utils import click, open_magic
+from utils import right_click
 
 
 
@@ -29,15 +29,11 @@ for i in tqdm(range(args['iterations'])):
     for item in coords.keys():
         coord = coords[item]
         ic(item, coord)
+        right_click(coordinates=coord)
+        
+
         # Right click each item 
         # Wait a tick
         # Scroll to sell 5
 
-    ic(i)
-    ic('Selecting alch')
-    click(coords['alch'], .65)
-    ic('Alching item')
-    click(coords['item'], 3.5)
-    # How low can we go? a tick is 0.6 
-    # click(coords['item'], 1)
 
