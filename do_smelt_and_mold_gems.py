@@ -16,6 +16,7 @@ def parse_args():
     parser.add_argument('--input', type=str, default='./gem.json', help='File with pixel coordinates')
     parser.add_argument('--iterations', type=int, default=1, help='Number of iterations to complete')
     parser.add_argument('--probability', type=float, default=0.1, help='probability for alternatives')
+    parser.add_argument('--skip_smelt', action='store_true', help='Skip smelting step andjust mold the necklaces')
     return vars(parser.parse_args())
 
 args = parse_args()
@@ -31,21 +32,22 @@ for i in tqdm(range(args['iterations'])):
     ic(i)
     if random_true(args['probability']):
         ic('Walking to alternate spot')
-        click(coords['alternate_furnace'], 8)
-        click(coords['alternate_smelt'], 1.2, 5)
+        click(coords['alternate_furnace'], 20)
+        click(coords['alternate_smelt'], 2.5, 5)
     else: 
         ic('Walking to furnace')
-        click(coords['walk_to_furnace'], 8)
+        click(coords['walk_to_furnace'], 21)
         ic('Clicking on furnace to smelt')
-        click(coords['smelt'], 1.2, 7)
+        click(coords['smelt'], 2.1, 7)
 
-    ic('Smelting all')
-    confirm(42)
+    if not args['skip_smelt']:
+        ic('Smelting all')
+        confirm(42)
     ic('Molding all')
     click(coords['smelt'], 1.2)
     confirm(25)
     ic('back to bank')
-    click(coords['back_to_bank'], 6)
+    click(coords['back_to_bank'], 20)
     ic('Open bank')
     click(coords['open_bank'], 1)
 

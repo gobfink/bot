@@ -6,6 +6,7 @@ import random
 from icecream import ic
 
 TICK_TIME=0.6
+MENU_ITEM_SIZE=20
 
 def write_json(j_data, file):
     with open(file,'w') as f:

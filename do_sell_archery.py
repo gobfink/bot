@@ -7,7 +7,7 @@ from icecream import ic
 import time
 import random
 from tqdm import tqdm
-from utils import right_click
+from utils import right_click, click, TICK_TIME, MENU_ITEM_SIZE
 
 
 
@@ -28,8 +28,11 @@ assert coords
 for i in tqdm(range(args['iterations'])):
     for item in coords.keys():
         coord = coords[item]
-        ic(item, coord)
-        right_click(coordinates=coord)
+        sell_5 = coord.copy()
+        sell_5[1] += MENU_ITEM_SIZE * 3
+        ic(item, coord, sell_5)
+        right_click(coordinates=coord,pixels_to_fuzz=10)
+        click(sell_5)
         
 
         # Right click each item 
