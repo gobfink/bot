@@ -4,6 +4,7 @@ from pynput import mouse
 import time
 import random
 from icecream import ic
+import numpy as np
 
 TICK_TIME=0.6
 MENU_ITEM_SIZE=20
@@ -24,6 +25,24 @@ def get_one_left_click():
         listener.join()
     return l['pos']
 
+def get_rgb(rgb: tuple[int,int,int], region: tuple[int,int,int,int]):
+    r, g, b = rgb
+    screenshot = pyautogui.screenshot(region=region)
+    img = np.array(screenshot)
+    mask = (
+        (img[:,:,0] == r) &
+        (img[:,:,1] == g) &
+        (img[:,:,2] == b) 
+    )
+    ys, xs = np.where(mask)
+    if not xs:
+        return []
+    
+    xs += region[0]
+    ys += region[1]
+
+    coords = list(zip(xs,ys))
+    return coords
 
 def click(coordinates, sleep=0, pixels_to_fuzz=0):
     x = pixel_fuzz(coordinates[0], pixels_to_fuzz)

@@ -7,7 +7,7 @@ from icecream import ic
 import time
 import random
 from tqdm import tqdm
-from utils import right_click, click, TICK_TIME, MENU_ITEM_SIZE
+from utils import right_click, click, get_rgb, MENU_ITEM_SIZE
 
 
 
@@ -24,14 +24,26 @@ with open(args['input']) as f:
     coords = json.load(f)
 
 assert coords
+ic(coords)
+
+ic('Trading with Brian')
+cyans = get_rgb((0,255,255), coords['region'])
+bryan = cyans[0]
+trade_bryan = bryan.copy() + MENU_ITEM_SIZE * 3 - 5
+# Right click bryan
+right_click(bryan)
+# Click to trade him
+click(trade_bryan)
+
+
 
 for i in tqdm(range(args['iterations'])):
     for item in coords.keys():
         coord = coords[item]
         sell_5 = coord.copy()
-        sell_5[1] += MENU_ITEM_SIZE * 3
+        sell_5[1] += MENU_ITEM_SIZE * 3 - 5
         ic(item, coord, sell_5)
-        right_click(coordinates=coord,pixels_to_fuzz=10)
+        right_click(coordinates=coord,pixels_to_fuzz=5)
         click(sell_5)
         
 
