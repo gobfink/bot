@@ -7,7 +7,7 @@ from icecream import ic
 import time
 import random
 from tqdm import tqdm
-from utils import right_click, click, get_rgb, MENU_ITEM_SIZE
+from utils import right_click, click, get_rgb, MENU_ITEM_SIZE, TICK_TIME
 
 
 
@@ -27,14 +27,17 @@ assert coords
 ic(coords)
 
 ic('Trading with Brian')
-cyans = get_rgb((0,255,255), coords['region'], offset=(20,20))
+cyans = get_rgb((0,255,255), coords['region'], offset=(0,0))
 bryan = list(cyans[0])
 trade_bryan = bryan.copy()
-trade_bryan[1] += MENU_ITEM_SIZE * 3 - 5
+trade_bryan[1] += MENU_ITEM_SIZE * 2 - 5
+pyautogui.moveTo(bryan)
+time.sleep(TICK_TIME)
 # Right click bryan
 right_click(bryan)
 # Click to trade him
 click(trade_bryan)
+breakpoint()
 
 
 
