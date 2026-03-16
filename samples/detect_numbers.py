@@ -31,6 +31,7 @@ for c in contours:
     if 8 < w < 60 and 10 < h < 40:
 
         roi = mask[y:y+h, x:x+w]
+        roi = cv2.resize(roi, None, fx=3, fy=3)
 
         text = pytesseract.image_to_string(
             roi,
