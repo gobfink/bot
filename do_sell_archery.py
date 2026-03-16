@@ -40,18 +40,16 @@ for i in tqdm(range(args['iterations'])):
     # Click to trade him
     click(trade_bryan)
     breakpoint()
-
-
-
-    for i in tqdm(range(args['iterations'])):
-        for item in coords.keys():
-            coord = coords[item]
-            sell_5 = coord.copy()
-            sell_5[1] += MENU_ITEM_SIZE * 3 - 5
-            ic(item, coord, sell_5)
-            right_click(coordinates=coord,pixels_to_fuzz=5)
-            click(sell_5)
-    
+    for item in coords.keys():
+        if item == 'region':
+            #Don't need to click on the region
+            continue
+        coord = coords[item]
+        sell_5 = coord.copy()
+        sell_5[1] += MENU_ITEM_SIZE * 3 - 5
+        ic(item, coord, sell_5)
+        right_click(coordinates=coord,pixels_to_fuzz=5)
+        click(sell_5)
     
         # Keys to switch worlds
         press('esc', 1)
