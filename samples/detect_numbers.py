@@ -2,40 +2,64 @@ import cv2
 import pytesseract
 import numpy as np
 
-# load image
-img = cv2.imread("image.png")
+# If on Windows uncomment and set path
+# pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
-# convert to HSV (better for color detection)
+img = cv2.imread("brians.png")
+
+# convert to HSV
 hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
-# mask yellow color
-lower_yellow = np.array([20, 150, 150])
-upper_yellow = np.array([40, 255, 255])
+# mask yellow numbers
+lower = np.array([20, 120, 120])
+upper = np.array([40, 255, 255])
+mask = cv2.inRange(hsv, lower, upper)
 
-mask = cv2.inRange(hsv, lower_yellow, upper_yellow)
+# clean mask
+kernel = np.ones((3,3),np.uint8)
+mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
 
-# find contours (possible numbers)
-contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+# find digit blobs
+contours,_ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-numbers = []
+digits = []
 
 for c in contours:
-    x, y, w, h = cv2.boundingRect(c)
+    x,y,w,h = cv2.boundingRect(c)
 
-    # filter small noise
-    if w > 10 and h > 10:
-        roi = img[y:y+h, x:x+w]
+    # filter noise
+    if 8 < w < 60 and 10 < h < 40:
+
+        roi = mask[y:y+h, x:x+w]
 
         text = pytesseract.image_to_string(
             roi,
-            config="--psm 7 -c tessedit_char_whitelist=0123456789"
-        )
+            config="--psm 10 -c tessedit_char_whitelist=0123456789"
+        ).strip()
 
-        text = text.strip()
-        if text:
-            numbers.append((x, text))
+        if text.isdigit():
+            digits.append((x,text))
 
-# sort left-to-right
-numbers.sort()
+# sort left to right
+digits.sort()
 
-print([n[1] for n in numbers])
+# merge digits into numbers
+numbers = []
+current = ""
+
+prev_x = None
+
+for x,d in digits:
+
+    if prev_x is None or x - prev_x < 20:
+        current += d
+    else:
+        numbers.append(current)
+        current = d
+
+    prev_x = x
+
+if current:
+    numbers.append(current)
+
+print(numbers)
