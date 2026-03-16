@@ -35,7 +35,7 @@ def get_rgb(rgb: tuple[int,int,int], region: tuple[int,int,int,int]):
         (img[:,:,2] == b) 
     )
     ys, xs = np.where(mask)
-    if not xs:
+    if len(xs) == 0:
         return []
     
     xs += region[0]
