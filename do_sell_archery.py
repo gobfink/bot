@@ -7,7 +7,7 @@ from icecream import ic
 import time
 import random
 from tqdm import tqdm
-from utils import right_click, click, get_rgb, MENU_ITEM_SIZE, TICK_TIME
+from utils import right_click, click, get_rgb, hold_and_press, press, MENU_ITEM_SIZE, TICK_TIME
 
 
 
@@ -26,33 +26,35 @@ with open(args['input']) as f:
 assert coords
 ic(coords)
 
-ic('Trading with Brian')
-cyans = get_rgb((0,255,255), coords['region'], offset=(0,0))
-bryan = list(cyans[0])
-trade_bryan = bryan.copy()
-trade_bryan[1] += MENU_ITEM_SIZE * 2 - 5
-pyautogui.moveTo(bryan)
-time.sleep(TICK_TIME)
-# Right click bryan
-right_click(bryan)
-# Click to trade him
-click(trade_bryan)
-breakpoint()
-
-
-
 for i in tqdm(range(args['iterations'])):
-    for item in coords.keys():
-        coord = coords[item]
-        sell_5 = coord.copy()
-        sell_5[1] += MENU_ITEM_SIZE * 3 - 5
-        ic(item, coord, sell_5)
-        right_click(coordinates=coord,pixels_to_fuzz=5)
-        click(sell_5)
-        
+    ic(i)
+    ic('Trading with Brian')
+    cyans = get_rgb((0,255,255), coords['region'], offset=(0,0))
+    bryan = list(cyans[0])
+    trade_bryan = bryan.copy()
+    trade_bryan[1] += MENU_ITEM_SIZE * 2 - 5
+    pyautogui.moveTo(bryan)
+    time.sleep(TICK_TIME)
+    # Right click bryan
+    right_click(bryan)
+    # Click to trade him
+    click(trade_bryan)
+    breakpoint()
 
-        # Right click each item 
-        # Wait a tick
-        # Scroll to sell 5
 
+
+    for i in tqdm(range(args['iterations'])):
+        for item in coords.keys():
+            coord = coords[item]
+            sell_5 = coord.copy()
+            sell_5[1] += MENU_ITEM_SIZE * 3 - 5
+            ic(item, coord, sell_5)
+            right_click(coordinates=coord,pixels_to_fuzz=5)
+            click(sell_5)
+    
+    
+    # Keys to switch worlds
+    hold_and_press(['ctrlleft','shiftleft'], 'right', 2)
+    press('space', 12)
+            
 
