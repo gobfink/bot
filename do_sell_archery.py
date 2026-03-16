@@ -34,7 +34,7 @@ for i in tqdm(range(args['iterations'])):
     trade_bryan = bryan.copy()
     trade_bryan[1] += MENU_ITEM_SIZE * 2 - 5
     pyautogui.moveTo(bryan)
-    time.sleep(TICK_TIME)
+    time.sleep(0.2)
     # Right click bryan
     right_click(bryan)
     # Click to trade him
@@ -53,8 +53,9 @@ for i in tqdm(range(args['iterations'])):
             click(sell_5)
     
     
-    # Keys to switch worlds
-    hold_and_press(['ctrlleft','shiftleft'], 'right', 2)
-    press('space', 12)
+        # Keys to switch worlds
+        press('esc', 1)
+        hold_and_press(['ctrlleft','shiftleft'], 'right', 2)
+        press('space', 12)
             
 
