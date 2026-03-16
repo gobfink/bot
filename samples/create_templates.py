@@ -1,26 +1,45 @@
 import cv2
 import numpy as np
+import os
 
-img = cv2.imread("brians.png")
+IMAGE_PATH = "image.png"
+OUT_DIR = "raw_digits"
 
+LOWER_YELLOW = np.array([10, 60, 60], dtype=np.uint8)
+UPPER_YELLOW = np.array([45, 255, 255], dtype=np.uint8)
+
+os.makedirs(OUT_DIR, exist_ok=True)
+
+img = cv2.imread(IMAGE_PATH)
 hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+mask = cv2.inRange(hsv, LOWER_YELLOW, UPPER_YELLOW)
 
-lower = np.array([20,120,120])
-upper = np.array([40,255,255])
+# optional cleanup
+mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, np.ones((2, 2), np.uint8))
 
-mask = cv2.inRange(hsv, lower, upper)
+num_labels, labels, stats, _ = cv2.connectedComponentsWithStats(mask, connectivity=8)
 
-contours,_ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+saved = 0
+debug = img.copy()
 
-i = 0
+for i in range(1, num_labels):
+    x, y, w, h, area = stats[i]
 
-for c in contours:
-    x,y,w,h = cv2.boundingRect(c)
+    if area < 8:
+        continue
+    if w < 2 or h < 6:
+        continue
+    if w > 25 or h > 30:
+        continue
 
-    if 8 < w < 40 and 10 < h < 40:
+    digit = mask[y:y+h, x:x+w]
+    out_path = os.path.join(OUT_DIR, f"digit_{saved}.png")
+    cv2.imwrite(out_path, digit)
 
-        roi = img[y:y+h, x:x+w]
+    cv2.rectangle(debug, (x, y), (x + w, y + h), (0, 255, 0), 1)
+    saved += 1
 
-        cv2.imwrite(f"digit_{i}.png", roi)
+cv2.imwrite("debug_boxes.png", debug)
+cv2.imwrite("debug_mask.png", mask)
 
-        i += 1
+print(f"saved {saved} digit crops to {OUT_DIR}/")
