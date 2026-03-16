@@ -79,6 +79,17 @@ def press(key, sleep):
     ic('press', key, sleep_f)
     time.sleep(sleep_f)
 
+def hold_and_press(hold_keys: list, press, sleep):
+    for key in hold_keys:
+        pyautogui.keyDown(key)
+    
+    pyautogui.press(press)
+    for key in hold_keys:
+        pyautogui.keyUp(key)
+    
+    sleep_f = fuzz(sleep)
+    time.sleep(sleep_f)
+
 def fuzz(value, amount=0.05):
     return value * (1 + random.uniform(-amount,amount))
 
