@@ -28,7 +28,7 @@ ic(coords)
 
 ic('Trading with Brian')
 cyans = get_rgb((0,255,255), coords['region'])
-bryan = cyans[0]
+bryan = list(cyans[0])
 trade_bryan = bryan.copy() + MENU_ITEM_SIZE * 3 - 5
 # Right click bryan
 right_click(bryan)
