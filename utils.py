@@ -25,7 +25,7 @@ def get_one_left_click():
         listener.join()
     return l['pos']
 
-def get_rgb(rgb: tuple[int,int,int], region: tuple[int,int,int,int]):
+def get_rgb(rgb: tuple[int,int,int], region: tuple[int,int,int,int], offset: tuple[int,int]):
     r, g, b = rgb
     screenshot = pyautogui.screenshot(region=region)
     img = np.array(screenshot)
@@ -38,8 +38,8 @@ def get_rgb(rgb: tuple[int,int,int], region: tuple[int,int,int,int]):
     if len(xs) == 0:
         return []
     
-    xs += region[0]
-    ys += region[1]
+    xs += region[0] + offset[0]
+    ys += region[1] + offset[1]
 
     coords = list(zip(xs,ys))
     return coords

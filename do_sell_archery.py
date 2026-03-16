@@ -27,7 +27,7 @@ assert coords
 ic(coords)
 
 ic('Trading with Brian')
-cyans = get_rgb((0,255,255), coords['region'])
+cyans = get_rgb((0,255,255), coords['region'], offset=(20,20))
 bryan = list(cyans[0])
 trade_bryan = bryan.copy()
 trade_bryan[1] += MENU_ITEM_SIZE * 3 - 5
