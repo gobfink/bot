@@ -43,7 +43,7 @@ m_shortbow = get_one_left_click()
 ic('Click Maple longbow')
 m_longbow = get_one_left_click()
 width = (np.array(bottom_right) - np.array(top_left)).tolist()
-region = top_left + width
+region = list(top_left) + width
 coordinates = {
     'region': region,
     'mithril_arrow': m_arrow,
