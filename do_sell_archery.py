@@ -6,6 +6,8 @@ import pyautogui
 from icecream import ic
 import time
 import random
+import cv2
+import numpy as np
 from tqdm import tqdm
 from utils import right_click, click, get_rgb, hold_and_press, press, MENU_ITEM_SIZE, TICK_TIME
 from number_detector import detect_numbers
@@ -29,20 +31,22 @@ def trade_bryan(region):
     right_click(bryan)
     # Click to trade him
     click(trade_bryan)
-    time.sleep(TICK_TIME)
+    time.sleep(2)
 
 def read_inventory(store_left):
     row_width = 360
     row_height = 45
     tr_region = store_left + [row_width, row_height]
     top_row = pyautogui.screenshot(region=tr_region)
+    top_row = cv2.cvtColor(np.array(top_row), cv2.COLOR_RGB2BGR)
     r2_region = tr_region.copy()
     r2_region[1] += row_height
     row_2 = pyautogui.screenshot(region=r2_region)
+    row_2 = cv2.cvtColor(np.array(row_2), cv2.COLOR_RGB2BGR)
 
     tr_numbers = detect_numbers(top_row)
     r2_numbers = detect_numbers(row_2)
-    breakpoint()
+
     
 args = parse_args()
 
@@ -57,7 +61,6 @@ for i in tqdm(range(args['iterations'])):
     ic(i)
     trade_bryan(coords['region'])
     inventory = read_inventory(coords['store_left'])
-    breakpoint()
     for item in coords.keys():
         if item == 'region' or item == 'store_left':
             #Don't need to click on the region
