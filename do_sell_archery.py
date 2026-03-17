@@ -99,7 +99,7 @@ for i in tqdm(range(args['iterations'])):
         sell_q = SELL_QUANTITY[item]
         inv_q = inventory[item]
         if inv_q > sell_q:
-            ic(inv_q, '>', sell_q, 'Skipping!')
+            ic(item, inv_q, '>', sell_q, 'Skipping!')
             continue
         coord = coords[item]
         sell_5 = coord.copy()
