@@ -44,15 +44,15 @@ def trade_bryan(region):
 
 def interpret_inventory(top_row, row_2):
     return {
-        'steel_arrow': top_row[0],
-        'mithril_arrow': top_row[1],
-        'adamant_arrow': top_row[2],
-        'oak_shortbow': top_row[3],
-        'oak_longbow': top_row[4],
-        'willow_shortbow': top_row[5],
-        'willow_longbow': top_row[6],
-        'maple_shortbow': top_row[7],
-        'maple_longbow': row_2[0],
+        'steel_arrow': int(top_row[0]),
+        'mithril_arrow': int(top_row[1]),
+        'adamant_arrow': int(top_row[2]),
+        'oak_shortbow': int(top_row[3]),
+        'oak_longbow': int(top_row[4]),
+        'willow_shortbow': int(top_row[5]),
+        'willow_longbow': int(top_row[6]),
+        'maple_shortbow': int(top_row[7]),
+        'maple_longbow': int(row_2[0]),
     }
 
 def read_inventory(store_left):
