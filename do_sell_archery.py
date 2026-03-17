@@ -33,6 +33,19 @@ def trade_bryan(region):
     click(trade_bryan)
     time.sleep(2)
 
+def interpret_inventory(top_row, row_2):
+    return {
+        'steel_arrow': top_row[0],
+        'mithril_arrow': top_row[1],
+        'adamant_arrow': top_row[2],
+        'oak_shortbow': top_row[3],
+        'oak_longbow': top_row[4],
+        'willow_shortbow': top_row[5],
+        'willow_longbow': top_row[6],
+        'maple_shortbow': top_row[7],
+        'maple_longbow': row_2[0],
+    }
+
 def read_inventory(store_left):
     row_width = 360
     row_height = 45
@@ -46,6 +59,11 @@ def read_inventory(store_left):
 
     tr_numbers = detect_numbers(top_row)
     r2_numbers = detect_numbers(row_2)
+
+    inventory = interpret_inventory(tr_numbers, r2_numbers)
+    ic(inventory)
+    return inventory
+
 
     
 args = parse_args()
@@ -61,6 +79,11 @@ for i in tqdm(range(args['iterations'])):
     ic(i)
     trade_bryan(coords['region'])
     inventory = read_inventory(coords['store_left'])
+    if not inventory:
+        ic('Unable to read invetory trying again')
+        time.sleep(1)
+        continue
+    breakpoint()
     for item in coords.keys():
         if item == 'region' or item == 'store_left':
             #Don't need to click on the region
