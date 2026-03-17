@@ -206,5 +206,5 @@ def detect_numbers(image_path, template_dir="../templates", debug=False):
 
 
 if __name__ == "__main__":
-    numbers = detect_numbers("brians.png", template_dir="../templates", debug=True)
+    numbers = detect_numbers("b1.png", template_dir="../templates", debug=True)
     print(numbers)

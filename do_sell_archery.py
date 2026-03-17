@@ -54,8 +54,8 @@ ic(coords)
 
 for i in tqdm(range(args['iterations'])):
     ic(i)
-    trade_bryan()
-    inventory = read_inventory()
+    trade_bryan(coords['region'])
+    inventory = read_inventory(coords['store_left'])
     breakpoint()
     for item in coords.keys():
         if item == 'region' or item == 'store_left':
