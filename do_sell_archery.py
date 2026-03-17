@@ -104,6 +104,7 @@ for i in tqdm(range(args['iterations'])):
         if inv_q > sell_q:
             ic(item, inv_q, '>', sell_q, 'Skipping!')
             continue
+        ic('Selling', item)
         coord = coords[item]
         sell_5 = coord.copy()
         sell_5[1] += MENU_ITEM_SIZE * 3 - 5
