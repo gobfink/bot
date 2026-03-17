@@ -2,8 +2,8 @@ import cv2
 import numpy as np
 from pathlib import Path
 
-LOWER_YELLOW = np.array([10, 60, 60], dtype=np.uint8)
-UPPER_YELLOW = np.array([45, 255, 255], dtype=np.uint8)
+LOWER_YELLOW = np.array([24, 200, 200], dtype=np.uint8)
+UPPER_YELLOW = np.array([30, 255, 255], dtype=np.uint8)
 
 NORM_W = 12
 NORM_H = 16
@@ -50,7 +50,7 @@ def bitmap_key(binary):
     return tuple((norm > 0).astype(np.uint8).flatten().tolist())
 
 
-def load_digit_lookup(template_dir="templates"):
+def load_digit_lookup(template_dir="../templates"):
     lookup = {}
     for d in "0123456789":
         path = Path(template_dir) / f"{d}.png"
@@ -161,7 +161,7 @@ def classify_digit(binary_digit, lookup):
     return best_digit
 
 
-def detect_numbers(image_path, template_dir="templates", debug=False):
+def detect_numbers(image_path, template_dir="../templates", debug=False):
     img = cv2.imread(image_path)
     if img is None:
         raise FileNotFoundError(image_path)
@@ -206,5 +206,5 @@ def detect_numbers(image_path, template_dir="templates", debug=False):
 
 
 if __name__ == "__main__":
-    numbers = detect_numbers("image.png", template_dir="templates", debug=True)
+    numbers = detect_numbers("brians.png", template_dir="../templates", debug=True)
     print(numbers)
