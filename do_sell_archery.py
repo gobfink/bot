@@ -8,7 +8,7 @@ import time
 import random
 from tqdm import tqdm
 from utils import right_click, click, get_rgb, hold_and_press, press, MENU_ITEM_SIZE, TICK_TIME
-
+from number_detector import detect_numbers
 
 
 def parse_args():
@@ -17,6 +17,32 @@ def parse_args():
     parser.add_argument('--iterations', type=int, default=1, help='Number of iterations to complete')
     return vars(parser.parse_args())
 
+def trade_bryan(region):
+    ic('Trading with Brian')
+    cyans = get_rgb((0,255,255), region, offset=(0,0))
+    bryan = list(cyans[0])
+    trade_bryan = bryan.copy()
+    trade_bryan[1] += MENU_ITEM_SIZE * 2 - 5
+    pyautogui.moveTo(bryan)
+    time.sleep(0.005)
+    # Right click bryan
+    right_click(bryan)
+    # Click to trade him
+    click(trade_bryan)
+
+def read_inventory(store_left):
+    row_width = 360
+    row_height = 45
+    tr_region = store_left + [row_width, row_height]
+    top_row = pyautogui.screenshot(region=tr_region)
+    r2_region = tr_region.copy()
+    r2_region[1] += row_height
+    row_2 = pyautogui.screenshot(region=r2_region)
+
+    tr_numbers = detect_numbers(top_row)
+    r2_numbers = detect_numbers(row_2)
+    breakpoint()
+    
 args = parse_args()
 
 coords = None
@@ -28,20 +54,11 @@ ic(coords)
 
 for i in tqdm(range(args['iterations'])):
     ic(i)
-    ic('Trading with Brian')
-    cyans = get_rgb((0,255,255), coords['region'], offset=(0,0))
-    bryan = list(cyans[0])
-    trade_bryan = bryan.copy()
-    trade_bryan[1] += MENU_ITEM_SIZE * 2 - 5
-    pyautogui.moveTo(bryan)
-    time.sleep(0.005)
-    # Right click bryan
-    right_click(bryan)
-    # Click to trade him
-    click(trade_bryan)
+    trade_bryan()
+    inventory = read_inventory()
     breakpoint()
     for item in coords.keys():
-        if item == 'region':
+        if item == 'region' or item == 'store_left':
             #Don't need to click on the region
             continue
         coord = coords[item]
