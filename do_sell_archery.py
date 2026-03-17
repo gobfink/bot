@@ -29,6 +29,7 @@ def trade_bryan(region):
     right_click(bryan)
     # Click to trade him
     click(trade_bryan)
+    time.sleep(TICK_TIME)
 
 def read_inventory(store_left):
     row_width = 360
