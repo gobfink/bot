@@ -5,13 +5,22 @@ import json
 import pyautogui
 from icecream import ic
 import time
-import random
 import cv2
 import numpy as np
 from tqdm import tqdm
 from utils import right_click, click, get_rgb, hold_and_press, press, MENU_ITEM_SIZE, TICK_TIME
 from number_detector import detect_numbers
 
+
+SELL_QUANTITY = {
+        'mithril_arrow': 1000,
+        'adamant_arrow': 800,
+        'oak_longbow': 4,
+        'willow_shortbow': 3,
+        'willow_longbow': 3,
+        'maple_shortbow': 2,
+        'maple_longbow': 2,
+}
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Reads the json file and clicks on the coordinates to perform bones to bananas')
@@ -83,10 +92,14 @@ for i in tqdm(range(args['iterations'])):
         ic('Unable to read invetory trying again')
         time.sleep(1)
         continue
-    breakpoint()
     for item in coords.keys():
         if item == 'region' or item == 'store_left':
             #Don't need to click on the region
+            continue
+        sell_q = SELL_QUANTITY[item]
+        inv_q = inventory[item]
+        if inv_q > sell_q:
+            ic(inv_q, '>', sell_q, 'Skipping!')
             continue
         coord = coords[item]
         sell_5 = coord.copy()
