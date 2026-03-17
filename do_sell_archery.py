@@ -69,6 +69,9 @@ def read_inventory(store_left):
     tr_numbers = detect_numbers(top_row)
     r2_numbers = detect_numbers(row_2)
 
+    if not tr_numbers or not r2_numbers:
+        return None
+
     inventory = interpret_inventory(tr_numbers, r2_numbers)
     ic(inventory)
     return inventory
