@@ -23,14 +23,16 @@ SELL_QUANTITY = {
 }
 
 def parse_args():
-    parser = argparse.ArgumentParser(description='Reads the json file and clicks on the coordinates to perform bones to bananas')
-    parser.add_argument('--input', type=str, default='./alch.json', help='File with pixel coordinates')
+    parser = argparse.ArgumentParser(description='Reads the json file and sells archery')
+    parser.add_argument('--input', type=str, default='./archery.json', help='File with pixel coordinates')
     parser.add_argument('--iterations', type=int, default=1, help='Number of iterations to complete')
     return vars(parser.parse_args())
 
 def trade_bryan(region):
     ic('Trading with Brian')
     cyans = get_rgb((0,255,255), region, offset=(0,0))
+    if not cyans:
+        return None
     bryan = list(cyans[0])
     trade_bryan = bryan.copy()
     trade_bryan[1] += MENU_ITEM_SIZE * 2 - 5
@@ -110,8 +112,10 @@ for i in tqdm(range(args['iterations'])):
         sell_5[1] += MENU_ITEM_SIZE * 3 - 5
         ic(item, coord, sell_5)
         right_click(coordinates=coord,pixels_to_fuzz=5)
+        time.sleep(0.1)
         click(sell_5)
     
+    time.sleep(2)
     # Keys to switch worlds
     press('esc', 1)
     hold_and_press(['ctrlleft','shiftleft'], 'right', 2)

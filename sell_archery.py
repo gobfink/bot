@@ -10,7 +10,7 @@ from utils import write_json, get_one_left_click, click, open_magic
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Writes the json file to load into the doer')
-    parser.add_argument('--output', type=str, default='./alch.json', help='File to save the coordinates to')
+    parser.add_argument('--output', type=str, default='./archery.json', help='File to save the coordinates to')
     return vars(parser.parse_args())
 
 
