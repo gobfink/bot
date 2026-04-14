@@ -10,6 +10,7 @@ import numpy as np
 from tqdm import tqdm
 from utils import right_click, click, get_rgb, hold_and_press, press, MENU_ITEM_SIZE, TICK_TIME
 from number_detector import detect_numbers
+from datetime import datetime, timedelta
 
 
 SELL_QUANTITY = {
@@ -86,17 +87,23 @@ coords = None
 with open(args['input']) as f:
     coords = json.load(f)
 
+last_read = None
+next_read = None
+times_read_inventory = 0
 assert coords
 ic(coords)
-
 for i in tqdm(range(args['iterations'])):
     ic(i)
     trade_bryan(coords['region'])
     inventory = read_inventory(coords['store_left'])
     if not inventory:
-        ic('Unable to read invetory trying again')
+        ic('Unable to read inventory trying again')
+        ic(last_read,times_read_inventory, next_read)
         time.sleep(1)
         continue
+    times_read_inventory += 1
+    last_read = datetime.now()
+    next_read = last_read + timedelta(hours=4)
     for item in coords.keys():
         if item == 'region' or item == 'store_left':
             #Don't need to click on the region
@@ -119,6 +126,6 @@ for i in tqdm(range(args['iterations'])):
     # Keys to switch worlds
     press('esc', 1)
     hold_and_press(['ctrlleft','shiftleft'], 'right', 2)
-    press('space', 6)
+    press('space', 8)
             
 

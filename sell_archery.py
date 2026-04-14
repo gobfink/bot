@@ -50,13 +50,13 @@ region = list(top_left) + width
 coordinates = {
     'region': region,
     'store_left': store_left,
-    'mithril_arrow': m_arrow,
-    'adamant_arrow': ad_arrow,
-    'oak_longbow': o_longbow,
-    'willow_shortbow': w_shortbow,
-    'willow_longbow': w_longbow,
-    'maple_shortbow': m_shortbow,
     'maple_longbow': m_longbow,
+    'maple_shortbow': m_shortbow,
+    'willow_longbow': w_longbow,
+    'willow_shortbow': w_shortbow,
+    'oak_longbow': o_longbow,
+    'adamant_arrow': ad_arrow,
+    'mithril_arrow': m_arrow,
 }
 
 ic(coordinates)
